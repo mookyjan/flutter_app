@@ -38,33 +38,36 @@ class RandomWordsState extends State<RandomWords>{
         });
   }
 
-  Widget _buildRow(WordPair pair){
+  Widget _buildRow(WordPair pair) {
     final bool alreadySaved = _saved.contains(pair);
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
-      subtitle: Text(
-        pair.asCamelCase,
-        style: TextStyle(
-          color: Colors.red[300],
-          fontStyle: FontStyle.italic,
+    return Container(
+      color: Colors.amberAccent[200],
+      child: ListTile(
+        title: Text(
+          pair.asPascalCase,
+          style: _biggerFont,
         ),
+        subtitle: Text(
+          pair.asCamelCase,
+          style: TextStyle(
+            color: Colors.red[300],
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        trailing: Icon(
+          alreadySaved ? Icons.favorite : Icons.favorite_border,
+          color: alreadySaved ? Colors.red : null,
+        ),
+        onTap: () {
+          setState(() {
+            if (alreadySaved) {
+              _saved.remove(pair);
+            } else {
+              _saved.add(pair);
+            }
+          });
+        },
       ),
-      trailing: Icon(
-        alreadySaved? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap: (){
-        setState(() {
-          if(alreadySaved){
-            _saved.remove(pair);
-          }else{
-            _saved.add(pair);
-          }
-        });
-      },
     );
   }
 
