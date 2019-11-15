@@ -45,6 +45,13 @@ class RandomWordsState extends State<RandomWords>{
         pair.asPascalCase,
         style: _biggerFont,
       ),
+      subtitle: Text(
+        pair.asCamelCase,
+        style: TextStyle(
+          color: Colors.red[300],
+          fontStyle: FontStyle.italic,
+        ),
+      ),
       trailing: Icon(
         alreadySaved? Icons.favorite : Icons.favorite_border,
         color: alreadySaved ? Colors.red : null,
